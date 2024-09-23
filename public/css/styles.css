@@ -17,17 +17,17 @@ nav {
 }
 
 nav a {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 
 nav a:hover {
-  color: green;
+  color: deepskyblue;
 }
 
 /* heder styles */
 header {
-  color: #fff;
+  color: white;
   padding: 1rem;
 }
 
@@ -53,24 +53,24 @@ header a {
   text-align: center; 
 }
 
-.text_body {
-  position: absolute; /* Position the text over the image */
+.text_body { 
+  position: absolute; 
   top: 50%; /* Center vertically */
-  left: 37%; /* Center horizontally */
+  left: 37%;
   transform: translate(-50%, -50%); /* center the overlay */
   color: deepskyblue; /* Text color */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* shadow for better visibility */
-  z-index: 1; /* Ensure text is above the image */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+  z-index: 1; 
   border: 1px solid rgba(255, 255, 255, 0.7); /* Semi-transparent white border */
-  width: 200px; /* Adjust width to content */
-  height: 150px; /* Adjust height to content */
-  padding: 5px; /* Add padding for better spacing */
+  width: 200px; 
+  height: 150px; 
+  padding: 5px; 
   background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
   border-radius: 1px; 
 }
 
 /* button style */
-.ad_btn {
+.add_button {
   display: inline-block; 
   background-color: deepskyblue;
   color: #fff;
@@ -83,7 +83,7 @@ header a {
   margin-top: 15px;
 }
 
-.ad_btn:hover {
+.add_button:hover {
   background-color: gold; /* Add hover effect */
 }
 
@@ -105,14 +105,15 @@ img {
 .upgrades, .reviews {
   background-color: #fff; /* Different background color to differentiate sections */
   padding: 1rem;
-  border-radius: 8px; /* Optional: rounded corners */
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .upgrade_img {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns for the upgrade images */
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  color: deepskyblue;
 }
 
 .upgrades h2, .reviews h2 {
@@ -120,20 +121,21 @@ img {
   margin-bottom: 1rem;
 }
 
-.reviews ul {
+/* .reviews ul {
   list-style-type: none;
   padding-left: 0;
-}
+} */
 
 .reviews li {
   padding-bottom: 0.5rem;
+  text-align: justify;
 }
 
 
 /* larger screen styles */
 @media screen and (min-width: 600px) {
   .upgrade_and_review {
-  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  grid-template-columns: 1fr 1fr;
 }
 
 }
