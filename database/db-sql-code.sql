@@ -250,6 +250,7 @@ UPDATE public.inventory
 SET inv_description = REPLACE (inv_description, 'small interior', 'a huge interior')
 WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 
+
 -- Task 6) -> Updating all records in the inventory table to add "/vehicles"
 UPDATE public.inventory
 SET inv_image = REPLACE (inv_image, '/images/', '/images/vehicles/'),

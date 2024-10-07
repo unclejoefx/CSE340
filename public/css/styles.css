@@ -131,11 +131,35 @@ img {
   text-align: justify;
 }
 
-
 /* larger screen styles */
 @media screen and (min-width: 600px) {
   .upgrade_and_review {
   grid-template-columns: 1fr 1fr;
 }
 
+}
+
+.vehicle-detail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.vehicle-detail img {
+  max-width: 100%;
+  height: auto;
+}
+
+.vehicle-detail div {
+  flex: 1 1 45%;
+}
+
+@media screen and (max-width: 768px) {
+  .vehicle-detail {
+      flex-direction: column;
+  }
+
+  .vehicle-detail div {
+      width: 100%;
+  }
 }
