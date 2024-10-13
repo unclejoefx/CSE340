@@ -1,9 +1,9 @@
-<%# Basic Error Handling %>
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <p><%- message %></p>
-  <% } else { %>
-    <h1>Error</h1>
-    <p>There was an issue displaying the error message. Please go back to the homepage.</p>
-    <a href="/">Go to Homepage</a>
-  <% } %>
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+<%# messages() %>
+
+<%- grid %>

@@ -14,6 +14,7 @@ nav {
   align-items: center;
   background-color: #333;
   padding: 1rem;
+  list-style: none;
 }
 
 nav a {
@@ -131,6 +132,33 @@ img {
   text-align: justify;
 }
 
+#inv-display {
+  display: grid;
+  grid-template-columns: 1fr; /* Default: single column for small screens */
+  gap: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.details {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: left; /* Ensure text is aligned to the left */
+}
+
+.image {
+  text-align: center; /* Ensure the image is centered */
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
 /* larger screen styles */
 @media screen and (min-width: 600px) {
   .upgrade_and_review {
@@ -139,27 +167,7 @@ img {
 
 }
 
-.vehicle-detail {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.vehicle-detail img {
-  max-width: 100%;
-  height: auto;
-}
-
-.vehicle-detail div {
-  flex: 1 1 45%;
-}
-
-@media screen and (max-width: 768px) {
-  .vehicle-detail {
-      flex-direction: column;
-  }
-
-  .vehicle-detail div {
-      width: 100%;
-  }
+#inv-display {
+  grid-template-columns: 1fr 1fr; /* Two columns: text on the left, image on the right */
+  gap: 20px;
 }

@@ -1,9 +1,7 @@
-<%# Basic Error Handling %>
-<% if (title) { %>
-    <h1><%= title %></h1>
-    <p><%- message %></p>
-  <% } else { %>
-    <h1>Error</h1>
-    <p>There was an issue displaying the error message. Please go back to the homepage.</p>
-    <a href="/">Go to Homepage</a>
-  <% } %>
+<main>
+  <h1><%= title %></h1>
+  <p><%- message %></p> 
+  <p>It seems something went wrong. Don't worry, smile and try again!</p>
+  <p>Return to the <a href="/">home page</a> or <a href="javascript:history.back()">go back</a>.</p>
+</main>
+
