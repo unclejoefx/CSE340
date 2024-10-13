@@ -1,10 +1,43 @@
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
+  <h1><%= title %></h1>
+  <% } else {
+      res.redirect('/');
+  } %>
   
-  <%# messages() %>
-  
-  <%- grid %>
-    
+  <div class="vehicle-detail-page">
+      <!-- Left side: Image and gallery -->
+      <div class="vehicle-gallery">
+         <img src="<%- vehicle.inv_image %>" alt="Image of <%- vehicle.inv_make %> <%- vehicle.inv_model %>">
+         <!-- If you have additional images, you can add thumbnails here -->
+         <div class="thumbnail-gallery">
+            <img src="<%- vehicle.inv_thumbnail %>" alt="Thumbnail of <%- vehicle.inv_make %> <%- vehicle.inv_model %>">
+            <img src="<%- vehicle.inv_thumbnail %>" alt="Thumbnail of <%- vehicle.inv_make %> <%- vehicle.inv_model %>">
+            <img src="<%- vehicle.inv_thumbnail %>" alt="Thumbnail of <%- vehicle.inv_make %> <%- vehicle.inv_model %>">
+            <img src="<%- vehicle.inv_thumbnail %>" alt="Thumbnail of <%- vehicle.inv_make %> <%- vehicle.inv_model %>">
+            <img src="<%- vehicle.inv_thumbnail %>" alt="Thumbnail of <%- vehicle.inv_make %> <%- vehicle.inv_model %>">
+            <!-- Repeat for other thumbnails if available -->
+         </div>
+      </div>
+   
+      <!-- Right side: Vehicle details -->
+      <div class="vehicle-info">
+         <h1><%= vehicle.inv_year %> <%= vehicle.inv_make %> <%= vehicle.inv_model %></h1>
+         <p class="price">No-Haggle Price: <%- new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(vehicle.inv_price) %></p>
+         <p class="mileage">Mileage: <%- new Intl.NumberFormat('en-US').format(vehicle.inv_miles) %></p>
+   
+         <div class="vehicle-specs">
+            <p>Ext. Color: <%- vehicle.inv_color %></p>
+            <p>Int. Color: <%- vehicle.inv_color %></p>
+            <p>Transmission: Automatic</p>
+            <p>Drivetrain: Front Wheel Drive</p>
+            <p>Fuel Type: Gasoline</p>
+         </div>
+   
+         <div class="actions">
+            <button>Start My Purchase</button>
+            <button>Contact Us</button>
+            <button>Schedule Test Drive</button>
+            <button>Apply for Financing</button>
+         </div>
+      </div>
+  </div>
