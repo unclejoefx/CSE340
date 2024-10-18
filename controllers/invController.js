@@ -1,39 +1,6 @@
-const invModel = require("../models/inventory-model")
-const utilities = require("../utilities/")
-
+const invModel = require("../models/inventory-model");
+const utilities = require("../utilities/");
 const invCont = {}
-
-
-/* ***************************
- *  Build inventory by classification view
- * ************************** */
-invCont.buildByClassificationId = async function (req, res, next) {
-  try {
-    const classification_id = req.params.classificationId
-
-    // Fetch data from model
-    const data = await invModel.getInventoryByClassificationId(classification_id)
-    
-    // Build grid and navigation
-    const grid = await utilities.buildClassificationGrid(data)
-    const nav = await utilities.getNav()
-
-    // Extract the classification name
-    const className = data[0].classification_name
-
-    // Render the classification view
-    res.render("./inventory/classification", {
-      title: className + " vehicles",
-      nav,
-      grid,
-    })
-  } catch (error) {
-    console.error("Error building classification view:", error)
-    res.status(500).send("Internal Server Error")
-  }
-}
-
-
 
 /* ***************************
  *  Build inventory by classification view
@@ -50,5 +17,41 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid,
   })
 }
+
+/* ***************************
+ *  Build inventory by vehicle view
+ * ************************** */
+invCont.buildVehicleDetail = async function (req, res, next) {
+  try {
+      const vehicleId = req.params.vehicleId;
+      const data = await invModel.getVehicleId(vehicleId);
+      
+      if (!data) {
+          // Handle vehicle not found
+          return res.status(404).render("errors/error", { message: "Vehicle not found" });
+      }
+
+      // Navigation (Optional) - depending on your project requirements
+      let nav = await utilities.getNav();
+
+      // Render the vehicle detail page
+      res.render("./inventory/vehicle", {
+          title: `${data.inv_make} ${data.inv_model} ${data.inv_year}`,
+          nav,
+          vehicle: data
+      });
+  } catch (error) {
+      next(error);  // Pass error to middleware
+  }
+};
+
+// Controller to trigger a 500 error
+invCont.triggerError = (req, res, next) => {
+  // Intentionally cause an error
+  const error = new Error('This is an intentional 500 error.');
+  error.status = 500;
+  next(error); // Pass the error to the error handling middleware
+};
+
 
 module.exports = invCont
