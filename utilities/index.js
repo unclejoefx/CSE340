@@ -58,29 +58,29 @@ Util.buildClassificationGrid = async function(data){
   }
   
 
-  Util.buildInventoryById = async function(data) {
-    let grid;
-    if (data.length > 0) {
-      grid = '<ul id="inv-display">';
-      data.forEach(vehicle => {
-        grid += `
-          <div class="details">
-            <div>Description: ${vehicle.inv_description}</div>
-            <div>Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</div>
-            <div>Mileage: ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</div>
-            <div>Color: ${vehicle.inv_color}</div>
-          </div>
-          <div class="image">
-            <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors">
-          </div>
-        `;
-      });
-      grid += '</ul>';
-    } else {
-      grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>';
-    }
-    return grid;
-  };
+  // Util.buildInventoryById = async function(data) {
+  //   let grid;
+  //   if (data.length > 0) {
+  //     grid = '<ul id="inv-display">';
+  //     data.forEach(vehicle => {
+  //       grid += `
+  //         <div class="details">
+  //           <div>Description: ${vehicle.inv_description}</div>
+  //           <div>Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</div>
+  //           <div>Mileage: ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</div>
+  //           <div>Color: ${vehicle.inv_color}</div>
+  //         </div>
+  //         <div class="image">
+  //           <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors">
+  //         </div>
+  //       `;
+  //     });
+  //     grid += '</ul>';
+  //   } else {
+  //     grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>';
+  //   }
+  //   return grid;
+  // };
   
   /* ****************************************
    * Middleware For Handling Errors

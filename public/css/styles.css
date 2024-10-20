@@ -85,7 +85,7 @@ header a {
 }
 
 .add_button:hover {
-  background-color: gold; /* Add hover effect */
+  background-color: gold; 
 }
 
 img {
@@ -135,10 +135,26 @@ img {
 #inv-display {
   display: grid;
   grid-template-columns: 1fr; /* Default: single column for small screens */
-  gap: 10px;
-  padding: 20px;
+  gap: 2rem;
+  padding: 3px;
+  justify-content: space-between;
+  max-width: 100%;
+  height: auto;
   background-color: #f9f9f9;
   border-radius: 8px;
+  margin: 10px;
+}
+
+#inv-display img{
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+ul, ol {
+  list-style: none; /* Removes bullet points or numbers */
+  padding-left: 0;   /* Adjusts padding to align the list */
+  text-align: center;
 }
 
 .details {
@@ -153,17 +169,18 @@ img {
   text-align: center; /* Ensure the image is centered */
 }
 
-.image img {
+/* .image img {
   width: 100%;
   height: auto;
   border-radius: 5px;
-}
+} */
 
 .namePrice span {
   background-color: #706f6fde;
   border-radius: 5px;
   color: whitesmoke;
 }
+
 
 .vehicle-detail-page {
   display: flex;
@@ -251,6 +268,150 @@ img {
 
 .vehicle-left, .vehicle-right {
   width: 50%;
+}
+
+/*styling the account view*/
+.login-page {
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: blue;
+  border-radius: 10px;
+}
+
+.login-illustration {
+  flex: 1;
+  text-align: center;
+}
+.login-illustration img {
+  max-width: 100%;
+  height: auto;
+}
+
+.login-form-container {
+  flex: 1;
+  padding: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: skyblue;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid azure;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bffd8;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button:hover {
+  background-color: #b300aa;
+}
+
+.flash-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.regAcc, .reg{
+  color: #ffffffed;
+  text-align: center;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+
+/* Styling the registration form container */
+.reg-form {
+  max-width: 500px; /* Restrict form width to 500px */
+  margin: 50px auto; /* Center the form horizontally and add some space on top */
+  padding: 20px;
+  background-color: #0d0588;
+  border-radius: 10px;
+  box-shadow: 0 10px 14px rgba(71, 43, 43, 0.1); /* Add a subtle shadow for depth */
+}
+
+.reg-form h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  width: 100%; /* Make inputs take full width of the form */
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+div.form-group span {
+  font-weight:lighter;
+  font-style: italic;
+  color: #ffffff;
+}
+
+p.insT{
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #ffd905;
+  padding: 8px;
+}
+
+
+/* Mobile-friendly adjustments */
+@media (max-width: 400px) {
+  .form-container {
+    max-width: 300px; /* Slightly smaller for mobile */
+  }
 }
 
 /* larger screen styles */
