@@ -1,4 +1,5 @@
 const utilities = require("../utilities/index")
+const accountModel = require("../models/account-model")
 const { body, validationResult } = require("express-validator")
 const validate = {}
 
@@ -13,7 +14,7 @@ validate.registrationRules = () => {
         .escape()
         .notEmpty()
         .isLength({ min: 1 })
-        .withMessage("Please provide a first name."), // on error, this message is sent.
+        .withMessage("Please provide a first name."),
   
       // lastname must also be string
       body("account_lastname")
@@ -29,8 +30,8 @@ validate.registrationRules = () => {
       .escape()
       .notEmpty()
       .isEmail()
-      .normalizeEmail() // Normalizes the email address (e.g., converting to lowercase).
-      .withMessage("A valid email is required."), // Provides a custom error message if the validation fails.
+      .normalizeEmail() 
+      .withMessage("A valid email is required."),
   
       // Robust password validation checks
       body("account_password")
@@ -49,7 +50,8 @@ validate.registrationRules = () => {
 
 
 /* ******************************
- * Check data and return errors or continue to registration
+ * Check data and return errors or
+   continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
     const { account_firstname, account_lastname, account_email } = req.body
@@ -70,5 +72,17 @@ validate.checkRegData = async (req, res, next) => {
     next()
 }
 
+// validating already existed emails in the database
+body("account_email")
+  .trim()
+  .isEmail()
+  .normalizeEmail() 
+  .withMessage("A valid email is required.")
+  .custom(async (account_email) => {
+    const emailExists = await accountModel.checkExistingEmail(account_email)
+    if (emailExists){
+      throw new Error("Email exists. Please log in or use different email")
+    }
+  }),
 
 module.exports = validate

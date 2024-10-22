@@ -1,0 +1,35 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+    
+    <%# message() %>
+    <h1>Add New Vehicle</h1>
+    
+        <% if (locals.errors) { %>
+            <div class="error-messages">
+                <ul>
+                    <% errors.forEach(function(error) { %>
+                        <li><%= error.msg %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        <% } %>
+    
+        <!-- Add Inventory Form -->
+        <form action="/inv/add-inventory" method="POST" id="addInventoryForm">
+                <fieldset>
+                <label for="invMake">Make</label>
+                <input type="text" id="invMake" name="inv_make" value="<%= locals.inv_make %>" required>
+    
+                <label for="invModel">Model</label>
+                <input type="text" id="invModel" name="inv_model" value="<%= locals.inv_model %>" required>
+    
+                <label for="classificationList">Classification</label>
+                <%= classificationList %>
+    
+                <button type="submit">Add Vehicle</button>
+            </fieldset>
+        </form>
+    </body>

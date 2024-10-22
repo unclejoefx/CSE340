@@ -1,0 +1,19 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+    
+    <%# message() %>
+    
+    <!-- Flash message -->
+    <% if (locals.flashMessage) { %>
+        <div class="flash-message">
+            <%= flashMessage %>
+        </div>
+    <% } %>
+    
+    <ul>
+        <li><a href="/inv/add-classification">Add New Classification</a></li>
+        <li><a href="/inv/add-inventory">Add New Inventory</a></li>
+    </ul>

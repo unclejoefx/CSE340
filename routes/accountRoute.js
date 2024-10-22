@@ -1,4 +1,4 @@
-// Import external resources
+// Importing all external resources
 const express = require('express');
 const router = new express.Router();
 const utilities = require('../utilities/index'); 
@@ -12,6 +12,14 @@ router.post(
     regValidate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
   )
+
+// login attempt
+router.post(
+  "/login",
+  (req, res) => {
+    res.status(200).send('login process')
+  }
+)
 
 // GET route for "Account"
 router.get('/login', utilities.handleErrors(accountController.buildLogin));

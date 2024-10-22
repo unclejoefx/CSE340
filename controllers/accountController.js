@@ -1,6 +1,6 @@
 const utilities = require('../utilities/index'); 
 const accountModel = require('../models/account-model') // Import the account model
-
+const bcrypt = require("bcryptjs") 
 
 /* ****************************************
 *  Deliver login view
@@ -26,6 +26,7 @@ async function buildRegister(req, res, next) {
     })
 }
 
+// Login form submission
 const processLogin = (req, res) => {
     const { account_email, account_password } = req.body;
   
@@ -44,19 +45,39 @@ const processLogin = (req, res) => {
 * *************************************** */
 async function registerAccount(req, res) {
     let nav = await utilities.getNav();
-    const { account_firstname, account_lastname, account_email, account_password } = req.body
+    const { account_firstname,
+            account_lastname,
+            account_email, 
+            account_password    
+    } = req.body
+
+    // Password sorting
+    let hashedPassword
+    try {
+        hashedPassword = await bcrypt.hashSync(account_password, 10)
+    } catch (error) {
+        req.flash(
+            "notice",
+            "Sorry, there was an error processing the registration"
+        )
+        res.status(500).render("account/register", {
+            title: "Registration",
+            nav,
+            errors: null
+        })
+    }
 
     const regResult = await accountModel.registerAccount(
         account_firstname,
         account_lastname,
         account_email,
-        account_password
+        hashedPassword
     )
 
     if (regResult) {
         req.flash(
             "notice",
-            `Congratulation, you\'re registered ${account_firstname}. Please log in.`
+            `Congratulation, you\'re registered ${account_firstname}. Please login.`
         )
         res.status(201).render("account/login", {
             title: "Login",

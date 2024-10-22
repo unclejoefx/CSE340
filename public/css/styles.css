@@ -150,37 +150,23 @@ img {
   margin: 10px;
   border-radius: 5px;
 }
+#inv-display {
+  padding: 3rem;
+  border-radius: 5px;
+  background-color: #bdbabaf3;
+  margin: 10px;
+}
 
+.namePrice span {
+  background-color: #706f6f;
+  border-radius: 5px;
+  color: #fff;
+}
 ul, ol {
   list-style: none; /* Removes bullet points or numbers */
   padding-left: 0;   /* Adjusts padding to align the list */
   text-align: center;
 }
-
-.details {
-  background-color: #fff;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  text-align: left; /* Ensure text is aligned to the left */
-}
-
-.image {
-  text-align: center; /* Ensure the image is centered */
-}
-
-/* .image img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-} */
-
-.namePrice span {
-  background-color: #706f6fde;
-  border-radius: 5px;
-  color: whitesmoke;
-}
-
 
 .vehicle-detail-page {
   display: flex;
@@ -207,7 +193,7 @@ ul, ol {
   height: 60px;
   margin-right: 10px;
   cursor: pointer;
-  border: 1px solid lightcyan;
+  border: 1px solid azure;
   border-radius: 4px;
   display: inline;
 }
@@ -225,7 +211,7 @@ ul, ol {
 .vehicle-info .price {
   font-size: 1.8em;
   font-weight: bold;
-  color: red;
+  color: #d9a44fd4;
   margin-bottom: 20px;
 }
 
@@ -238,6 +224,7 @@ ul, ol {
   margin-bottom: 10px;
 }
 
+
 .actions {
   display: flex;
   flex-direction: column;
@@ -246,7 +233,7 @@ ul, ol {
 
 .actions button {
   padding: 10px 15px;
-  background-color: #4CAF50;
+  background-color: green;
   color: white;
   border: none;
   cursor: pointer;
@@ -254,7 +241,7 @@ ul, ol {
 }
 
 .actions button:hover {
-  background-color: #45a049;
+  background-color: yellowgreen;
 }
 
 
@@ -266,9 +253,6 @@ ul, ol {
   background-color: white;
 }
 
-.vehicle-left, .vehicle-right {
-  width: 50%;
-}
 
 /*styling the account view*/
 .login-page {
@@ -276,7 +260,7 @@ ul, ol {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  background-color: blue;
+  background-color: navajowhite;
   border-radius: 10px;
 }
 
@@ -284,6 +268,7 @@ ul, ol {
   flex: 1;
   text-align: center;
 }
+
 .login-illustration img {
   max-width: 100%;
   height: auto;
@@ -302,39 +287,40 @@ ul, ol {
 label {
   margin-bottom: 5px;
   font-weight: bold;
-  color: skyblue;
+  color: #fff;
 }
 
 input {
   margin-bottom: 15px;
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid azure;
+  border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 button {
   padding: 10px;
-  background-color: #007bffd8;
+  background-color: #007BFF;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 5px;
 }
+
 button:hover {
-  background-color: #b300aa;
+  background-color: #0056b3;
 }
 
 .flash-message {
   background-color: #f8d7da;
-  color: #721c24;
+  color: violet;
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 20px;
 }
 
 .regAcc, .reg{
-  color: #ffffffed;
+  color: #fff;
   text-align: center;
   padding: 5px;
   margin-top: 10px;
@@ -343,12 +329,12 @@ button:hover {
 
 /* Styling the registration form container */
 .reg-form {
-  max-width: 500px; /* Restrict form width to 500px */
-  margin: 50px auto; /* Center the form horizontally and add some space on top */
+  max-width: 500px; 
+  margin: 50px auto; 
   padding: 20px;
-  background-color: #0d0588;
+  background-color: blue;
   border-radius: 10px;
-  box-shadow: 0 10px 14px rgba(71, 43, 43, 0.1); /* Add a subtle shadow for depth */
+  box-shadow: 0 10px 14px rgba(71, 43, 43, 0.1); 
 }
 
 .reg-form h1 {
@@ -369,7 +355,7 @@ label {
 }
 
 input {
-  width: 100%; /* Make inputs take full width of the form */
+  width: 100%; 
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -410,19 +396,29 @@ p.insT{
 /* Mobile-friendly adjustments */
 @media (max-width: 400px) {
   .form-container {
-    max-width: 300px; /* Slightly smaller for mobile */
+    max-width: 300px; 
   }
 }
 
 /* larger screen styles */
 @media screen and (min-width: 600px) {
-  .upgrade_and_review {
+.upgrade_and_review {
   grid-template-columns: 1fr 1fr;
 }
 
+#inv-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; 
+  gap: 2rem; 
+  padding: 3px;
+  background-color: #bdbabaf3;
+  justify-content: space-between;
+  max-width: 100%;
+  height: auto;
 }
 
-#inv-display {
-  grid-template-columns: 1fr 1fr; /* Two columns: text on the left, image on the right */
-  gap: 20px;
+.vehicle-left, .vehicle-right {
+  width: 50%;
+}
+
 }

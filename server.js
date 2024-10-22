@@ -18,7 +18,7 @@ const utilities = require("./utilities/index")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const accountController = require("./controllers/accountController")
-const errorRoute = require("./routes/errorRoute")
+// const errorRoute = require("./routes/errorRoute")
 const bodyParser = require("body-parser")
 
 
@@ -76,6 +76,8 @@ app.use("/inv", inventoryRoute);
 // Account route
 app.use("/account", require("./routes/accountRoute"));
 
+app.get("/", baseController.buildHome)
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
@@ -90,7 +92,7 @@ app.use("/errors",require("./routes/errorRoute"));
 *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   if(err.status == 404){message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
@@ -104,7 +106,7 @@ app.use(async (err, req, res, next) => {
 * Intentional Error Handler
 * Place after all other middleware
 *************************/
-app.use((error, req, res, next) => {
+app.use((error, _req, res, next) => {
   console.error(error.stack); 
   res.status(error.status || 500); 
   res.render('errors/error', { 
