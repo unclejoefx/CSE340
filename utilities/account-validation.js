@@ -8,32 +8,32 @@ const validate = {}
   * ********************************* */
 validate.registrationRules = () => {
     return [
-      // firstname must be string
+      // firstname is required and must be string
       body("account_firstname")
         .trim()
         .escape()
         .notEmpty()
         .isLength({ min: 1 })
-        .withMessage("Please provide a first name."),
+        .withMessage("Please provide a first name."), // on error this message is sent.
   
-      // lastname must also be string
+      // lastname is required and must be string
       body("account_lastname")
         .trim()
         .escape()
         .notEmpty()
         .isLength({ min: 2 })
-        .withMessage("Please provide a last name."),
+        .withMessage("Please provide a last name."), // on error this message is sent.
   
-      // Email validation 
+      // valid email is required and cannot already exist in the DB
       body("account_email")
       .trim()
       .escape()
       .notEmpty()
       .isEmail()
-      .normalizeEmail() 
+      .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required."),
   
-      // Robust password validation checks
+      // password is required and must be strong password
       body("account_password")
         .trim()
         .notEmpty()
@@ -50,8 +50,7 @@ validate.registrationRules = () => {
 
 
 /* ******************************
- * Check data and return errors or
-   continue to registration
+ * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
     const { account_firstname, account_lastname, account_email } = req.body
@@ -72,11 +71,12 @@ validate.checkRegData = async (req, res, next) => {
     next()
 }
 
-// validating already existed emails in the database
+
+// valid email is required and cannot already exist in the database
 body("account_email")
   .trim()
   .isEmail()
-  .normalizeEmail() 
+  .normalizeEmail() // refer to validator.js docs
   .withMessage("A valid email is required.")
   .custom(async (account_email) => {
     const emailExists = await accountModel.checkExistingEmail(account_email)
@@ -84,5 +84,46 @@ body("account_email")
       throw new Error("Email exists. Please log in or use different email")
     }
   }),
+
+/*  **********************************
+  *  Login Data Validation Rules
+  * ********************************* */
+validate.loginRules = () => {
+  return [
+    // Email is required and must be valid
+    body("account_email")
+      .trim()
+      .isEmail()
+      .withMessage("Please provide a valid email address.")
+      .normalizeEmail(),
+
+    // Password is required (but not checked for strength like in registration)
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .withMessage("Please provide your password."),
+  ]
+}
+
+/* ******************************
+ * Check login data and return errors or continue to login
+ * ***************************** */
+validate.checkLoginData = async (req, res, next) => {
+  const { account_email } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/login", {
+      errors,
+      title: "Login",
+      nav,
+      account_email, // Preserve email to avoid re-entering it
+    })
+    return
+  }
+  next()
+}
+
 
 module.exports = validate
