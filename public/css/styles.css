@@ -7,23 +7,44 @@
   max-width: 100%;
 }
 
-/* navigation style */
+/* styles.css */
+
+
+/* Style for the navigation bar */
 nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  padding: 1rem;
-  list-style: none;
+  background-color: hsl(0, 0%, 20%);
+  padding: 10px;
+  justify-content: center;
+
 }
 
-nav a {
+/* Remove default list styling */
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Display list items horizontally */
+nav ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+/* Style for the links */
+nav ul li a {
   color: white;
   text-decoration: none;
+  padding: 8px 16px;
+  display: inline-block;
 }
 
-nav a:hover {
-  color: deepskyblue;
+/* Change link color on hover */
+nav ul li a:hover {
+  background-color: gold;
+  border-radius: 5px;
 }
 
 /* heder styles */
@@ -34,6 +55,14 @@ header {
 
 header a {
   text-decoration: none;
+}
+
+.danger-msg {
+  color: red;
+  font-family: Impact, Roboto, 'Arial Narrow Bold', sans-serif;
+  font-style: italic;
+  text-align: center;
+  padding: 10px;
 }
 
 .siteName {
@@ -56,24 +85,24 @@ header a {
 
 .text_body { 
   position: absolute; 
-  top: 50%; /* Center vertically */
-  left: 37%;
-  transform: translate(-50%, -50%); /* center the overlay */
-  color: deepskyblue; /* Text color */
+  top: 50%; 
+  left: 35%;
+  transform: translate(-50%, -50%);
+  color: rgb(4, 0, 221); 
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
   z-index: 1; 
-  border: 1px solid rgba(255, 255, 255, 0.7); /* Semi-transparent white border */
+  border: 1px solid rgba(255, 255, 255, 0.7); 
   width: 200px; 
   height: 150px; 
   padding: 5px; 
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+  background-color: rgba(175, 170, 169, 0.349); 
   border-radius: 1px; 
 }
 
 /* button style */
 .add_button {
   display: inline-block; 
-  background-color: deepskyblue;
+  background-color: rgba(0, 22, 219, 0.904);
   color: #fff;
   padding: 10px 20px;
   border-radius: 4px;
@@ -85,7 +114,7 @@ header a {
 }
 
 .add_button:hover {
-  background-color: gold; 
+  background-color: gold; /* Add hover effect */
 }
 
 img {
@@ -97,24 +126,24 @@ img {
 
 .upgrade_and_review {
   display: grid;
-  grid-template-columns: 1fr; /* Two equal-width columns */
-  gap: 2rem; /* Gap between the two sections */
+  grid-template-columns: 1fr; 
+  gap: 2rem; 
   padding: 1rem;
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 .upgrades, .reviews {
-  background-color: #fff; /* Different background color to differentiate sections */
+  background-color: #f5eded;
   padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  box-shadow: 10px 10px 15px 10px rgba(0, 0, 0, 0.7); 
 }
 
 .upgrade_img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  color: deepskyblue;
+  color: rgb(0, 24, 161);
 }
 
 .upgrades h2, .reviews h2 {
@@ -132,17 +161,28 @@ img {
   text-align: justify;
 }
 
+/*Designing the inventory cars*/
 #inv-display {
   display: grid;
-  grid-template-columns: 1fr; /* Default: single column for small screens */
-  gap: 2rem;
+  grid-template-columns: 1fr; 
+  gap: 2rem; 
   padding: 3px;
   justify-content: space-between;
   max-width: 100%;
   height: auto;
-  background-color: #f9f9f9;
-  border-radius: 8px;
+}
+
+#inv-display {
+  padding: 3rem;
+  border-radius: 5px;
+  background-color: #bdbabad6;
   margin: 10px;
+}
+
+.namePrice span {
+  background-color: #70706f;
+  border-radius: 5px;
+  color: #fff;
 }
 
 #inv-display img{
@@ -150,23 +190,14 @@ img {
   margin: 10px;
   border-radius: 5px;
 }
-#inv-display {
-  padding: 3rem;
-  border-radius: 5px;
-  background-color: #bdbabaf3;
-  margin: 10px;
-}
 
-.namePrice span {
-  background-color: #706f6f;
-  border-radius: 5px;
-  color: #fff;
-}
 ul, ol {
-  list-style: none; /* Removes bullet points or numbers */
-  padding-left: 0;   /* Adjusts padding to align the list */
+  list-style: none; 
+  padding-left: 0;  
   text-align: center;
 }
+
+
 
 .vehicle-detail-page {
   display: flex;
@@ -193,7 +224,7 @@ ul, ol {
   height: 60px;
   margin-right: 10px;
   cursor: pointer;
-  border: 1px solid azure;
+  border: 1px solid #ccc;
   border-radius: 4px;
   display: inline;
 }
@@ -211,7 +242,7 @@ ul, ol {
 .vehicle-info .price {
   font-size: 1.8em;
   font-weight: bold;
-  color: #d9a44fd4;
+  color: greenyellow;
   margin-bottom: 20px;
 }
 
@@ -233,7 +264,7 @@ ul, ol {
 
 .actions button {
   padding: 10px 15px;
-  background-color: green;
+  background-color: #4CAF50;
   color: white;
   border: none;
   cursor: pointer;
@@ -241,7 +272,7 @@ ul, ol {
 }
 
 .actions button:hover {
-  background-color: yellowgreen;
+  background-color: #45a049;
 }
 
 
@@ -250,7 +281,7 @@ ul, ol {
   grid-template-columns: 1fr; 
   gap: 2rem; 
   padding: 1rem;
-  background-color: white;
+  background-color: whitesmoke;
 }
 
 
@@ -260,7 +291,7 @@ ul, ol {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  background-color: navajowhite;
+  background-color: deepskyblue;
   border-radius: 10px;
 }
 
@@ -279,7 +310,7 @@ ul, ol {
   padding: 20px;
 }
 
-.login-form {
+#login-form {
   display: flex;
   flex-direction: column;
 }
@@ -313,7 +344,7 @@ button:hover {
 
 .flash-message {
   background-color: #f8d7da;
-  color: violet;
+  color: #721c24;
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 20px;
@@ -332,7 +363,7 @@ button:hover {
   max-width: 500px; 
   margin: 50px auto; 
   padding: 20px;
-  background-color: blue;
+  background-color: #0d0588;
   border-radius: 10px;
   box-shadow: 0 10px 14px rgba(71, 43, 43, 0.1); 
 }
@@ -365,7 +396,7 @@ input {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #007BFF;
+  background-color: #0356ad;
   color: white;
   border: none;
   cursor: pointer;
@@ -375,7 +406,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #0866ca;
 }
 
 div.form-group span {
@@ -392,13 +423,145 @@ p.insT{
   padding: 8px;
 }
 
+/* Styling for management form */
+.manageInv {
+  text-align: left;
+  padding: 20px;
+}
 
+
+/* Styling for the validation form */
+label {
+  padding: 6px;
+  display: block;
+  margin: 1px;
+  padding: 1px;
+}
+
+.field {
+  margin: 1px;
+  padding: 1px;
+}
+
+input:invalid {
+  background-color: #f0d1d1d5;
+}
+
+form:invalid {
+  border: 5px solid #ebcdcdd5;
+  padding: 20px;
+}
+
+input:valid {
+  background-color: #71f171d2;
+}
+
+form:valid {
+  border: 5px solid #71f171d2;
+  padding: 20px;
+}
+
+input:required {
+  border-color: #a80707cc;
+  border-width: 2px;
+}
+
+input:required:invalid {
+  border-color: #c00000;
+}
+
+#classification_name {
+  width: 70%;
+}
+
+#inv_color, #inv_make, #inv_model, #inv_description, #inv_image, #inv_thumbnail, #inv_price, #inv_year, #inv_miles {
+  width: 75%;
+}
+
+#Addbtn {
+  width: 50%;
+}
+
+
+.addClass {
+  margin: 15px;
+  background-color: #0d0588;
+  width: 50%;
+  margin-left: 300px;
+}
+.addFieldset {
+  background-color: #023469da;
+}
+.addField {
+  text-align: left;
+  font-style: italic;
+  color: #fff;
+  padding: 10px 10px 10px 0px
+}
+
+/* Designing  and styling the Manage Inventory*/
+.invManagementView {
+  margin: 15px;
+}
+
+.invItems {
+  margin: 10px;
+  color: black;
+}
+
+#classificationList {
+  margin: 10px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.invAdd li a {
+  color: white;
+}
+
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+#inventoryDisplay th, #inventoryDisplay td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+#inventoryDisplay th {
+  background-color: #4a90e2;
+  color: white;
+  font-weight: bold;
+}
+
+#inventoryDisplay td {
+  background-color: #f9f9f9;
+}
+
+#inventoryDisplay tr:hover {
+  background-color: #e6f7ff;
+}
+
+/* NoScript Warning */
+noscript {
+  color: red;
+  font-weight: bold;
+  display: block;
+  margin-top: 1em;
+  text-align: center;
+}
 /* Mobile-friendly adjustments */
 @media (max-width: 400px) {
   .form-container {
     max-width: 300px; 
   }
 }
+
+
+
 
 /* larger screen styles */
 @media screen and (min-width: 600px) {
@@ -408,7 +571,7 @@ p.insT{
 
 #inv-display {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem; 
   padding: 3px;
   background-color: #bdbabaf3;
