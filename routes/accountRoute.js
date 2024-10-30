@@ -5,6 +5,8 @@ const utilities = require('../utilities/index');
 const accountController = require('../controllers/accountController');
 const regValidate = require('../utilities/account-validation')
 
+
+
 // Login route
 router.get('/register', utilities.handleErrors(accountController.buildRegister));
 router.post(

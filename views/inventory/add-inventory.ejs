@@ -4,32 +4,57 @@
         res.redirect('/')
     } %>
     
-    <%# message() %>
-    <h1>Add New Vehicle</h1>
+    <% if (errors) { %>
+      <ul class="message warning">
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <%  }) %>
+      </ul>
+      <% } %>
     
-        <% if (locals.errors) { %>
-            <div class="error-messages">
-                <ul>
-                    <% errors.forEach(function(error) { %>
-                        <li><%= error.msg %></li>
-                    <% }); %>
-                </ul>
-            </div>
-        <% } %>
+    <form class="addClass" action="/inv/add-inventory" method="post" id="addInventoryItem">
+      <p class="addField">ALL FIELD IS REQUIRED</p><br>
+      <fieldset class="addFieldset">
+        <label for="classification_id">Classification:</label>
+        <%- classificationList %> <!-- Directly render the HTML string -->
+        <!-- Make Field -->
+        <label for="inv_make">Make:</label>
+        <input type="text" id="inv_make" name="inv_make" value="<%= inv_make %>" placeholder="Min of 3 characters" minlength="3" required>
+      
+        <!-- Model Field -->
+        <label for="inv_model">Model:</label>
+        <input type="text" id="inv_model" name="inv_model" value="<%= inv_model %>" placeholder="Min of 3 characters" minlength="3" required>
     
-        <!-- Add Inventory Form -->
-        <form action="/inv/add-inventory" method="POST" id="addInventoryForm">
-                <fieldset>
-                <label for="invMake">Make</label>
-                <input type="text" id="invMake" name="inv_make" value="<%= locals.inv_make %>" required>
+        <!-- Description Field -->
+        <label for="inv_description">Description:</label>
+        <textarea id="inv_description" name="inv_description" rows="4" required><%= inv_description %></textarea>
+      
+        <!-- Image URL Field -->
+        <label for="inv_image">Image URL:</label>
+        <input type="text" id="inv_image" name="inv_image" value="<%= inv_image || '/images/vehicles/no-image.png' %>" required>
+      
+        <!-- Thumbnail URL Field -->
+        <label for="inv_thumbnail">Thumbnail URL:</label>
+        <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="<%= inv_thumbnail || '/images/vehicles/no-image.png' %>" required>
+      
+        <!-- Price Field -->
+        <label for="inv_price">Price:</label>
+        <input type="number" id="inv_price" name="inv_price" value="<%= inv_price %>" placeholder="decimal or integer" step="0.01" required>
     
-                <label for="invModel">Model</label>
-                <input type="text" id="invModel" name="inv_model" value="<%= locals.inv_model %>" required>
-    
-                <label for="classificationList">Classification</label>
-                <%= classificationList %>
-    
-                <button type="submit">Add Vehicle</button>
-            </fieldset>
-        </form>
-    </body>
+        <!-- Year Field -->
+        <label for="inv_year">Year:</label>
+        <input type="number" id="inv_year" name="inv_year" value="<%= inv_year %>" placeholder="4-digit year" min="1900" max="3000" required pattern="/d{4}">
+      
+        <!-- Miles Field -->
+        <label for="inv_miles">Miles:</label>
+        <input type="number" id="inv_miles" name="inv_miles" value="<%= inv_miles %>" placeholder="digits only" required>
+      
+        <!-- Color Field -->
+        <label for="inv_color">Color:</label>
+        <input type="text" id="inv_color" name="inv_color" value="<%= inv_color %>" required>
+      
+        <!-- Submit Button -->
+        <button id="Addbtn" type="submit">Add Inventory Item</button>
+      </fieldset>
+    </form>
+      
