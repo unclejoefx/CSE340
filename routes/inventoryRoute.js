@@ -1,32 +1,38 @@
 const express = require("express")
-const router = new express.Router() 
+const router = new express.Router()
+const utilities = require('../utilities/index'); 
 const invController = require("../controllers/invController")
-const {check} = require("express-validator")
+const validateResult = require("../utilities/inventory-validation")
 
-// Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
-router.get("/detail/:vehicleId", invController.buildVehicleDetail);
-router.get("/trigger-error: error", invController.triggerError)
 
-// Management view route
-router.get('/', invController.buildManagementView);
+// Route to display views
+router.get('/', invController.buildManagementView); 
+router.get("/add-classification", invController.addClassificationView); 
+router.get("/add-inventory", invController.addInventoryView); 
+router.get("/type/:classificationId", invController.buildByClassificationId); 
+router.get("/detail/:vehicleId", invController.buildVehicleDetail); 
+router.get("/trigger-error: error", invController.triggerError); 
 
-// classification view route
-router.get("/add-classification", invController.addClassificationView)
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
-//  inventory view route
-router.get('/add-inventory', invController.addInventoryView);
+// Routes to handle form submissions
+router.post(
+  "/add-inventory",
+  validateResult.inventoryRules(), 
+  validateResult.inventoryData,    
+  invController.addInventory       
+);
 
-// classification process route with server-side validation
-router.post("/add-classification", [
-    check("classification_name").isAlphanumeric().withMessage("Classification name must not contain special characters or spaces")
-], invController.addClassification);
+router.post(
+  "/add-classification",
+  validateResult.classificationRules(), 
+  validateResult.classificationData,    
+  invController.addClassification       
+);
 
-// inventory process route with validation
-router.post('/add-inventory', [
-    check('inv_make').notEmpty().withMessage('Make is required'),
-    check('inv_model').notEmpty().withMessage('Model is required'),
-    check('classification_id').notEmpty().withMessage('Classification is required')
-], invController.addInventory);
+// Route to edit an inventory item by id
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView)); // Define the controller function
+
+router.post("/update/", utilities.handleErrors(invController.updateInventory))
 
 module.exports = router;
