@@ -8,9 +8,10 @@
 /* ***********************
  * Require Statements
  *************************/
-const session = require("express-session"); // Single declaration of session
+ // Single declaration of session
+const session = require('express-session');
 const pool = require('./database/');
-const express = require("express");
+const express = require('express');
 const expressLayouts = require("express-ejs-layouts");
 const env = require("dotenv").config();
 const app = express();
@@ -37,6 +38,12 @@ app.use(session({
   name: 'sessionId',
 }));
 
+app.use(session({
+  secret: 'c62e3c2ea2086f4b14f24d5ad8df936039a744e1174093751d6fa67706fe489243d848068168e144cbdc525289e18ed40dae20f835d8e2721219896c9dde22d8', // Replace with a strong, unique secret key
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to `true` if you're using HTTPS
+}));
 // Parse cookies before checking JWT
 app.use(cookieParser());
 
@@ -79,6 +86,9 @@ app.get("/", utilities.handleErrors(baseController.buildHome));
 // Inventory routes
 app.use("/inv", inventoryRoute); // Ensure inventoryRoute exports a router
 
+app.use('/inventory', inventoryRoute);
+
+
 app.use("/trigger-error", utilities.handleErrors(baseController.triggerError));
 
 // Account route
@@ -89,6 +99,9 @@ app.use(async (req, res, next) => {
   next({ status: 404, message: 'Sorry, we appear to have lost that page.' });
 });
 
+app.get('/', (req, res) => {
+  res.send('Session is configured properly!');
+});
 /* ***********************
  * Express Error Handler
  * Place after all other middleware
@@ -134,3 +147,9 @@ const host = process.env.HOST;
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`);
 });
+
+// Your other middleware and routes here
+
+// app.listen(5500, () => {
+//   console.log('app listening on localhost:5500');
+// });
